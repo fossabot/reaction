@@ -7,7 +7,7 @@ import { Media } from "/imports/plugins/core/files/client";
 
 function uploadHandler(event) {
   const shopId = Reaction.getShopId();
-  const userId = Meteor.userId();
+  const userId = Reaction.userId();
   const { files } = event.target.files;
 
   for (let i = 0; i < files.length; i += 1) {

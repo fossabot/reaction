@@ -12,7 +12,7 @@ let entityCodeList = [];
 let currentAccount;
 
 Template.taxSettingsPanel.onCreated(function () {
-  this.subscribe("UserAccount", Meteor.userId());
+  this.subscribe("UserAccount", Reaction.userId());
 });
 
 Template.taxSettingsPanel.helpers({

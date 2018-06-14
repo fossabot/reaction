@@ -13,7 +13,7 @@ Meteor.methods({
   "cart/submitPayment"(paymentMethod) {
     check(paymentMethod, Object);
     const checkoutCart = Cart.findOne({
-      userId: Meteor.userId()
+      userId: Reaction.userId()
     });
 
     const cart = _.clone(checkoutCart);

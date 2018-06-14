@@ -22,7 +22,7 @@ export function findCurrency(defaultCurrency, useDefaultShopCurrency) {
 
   const shopCurrency = (shop && shop.currency) || "USD";
   const user = Accounts.findOne({
-    _id: Meteor.userId()
+    _id: Reaction.userId()
   });
   const profileCurrency = user && user.profile && user.profile.currency;
   if (typeof shop === "object" && shop.currencies && profileCurrency) {

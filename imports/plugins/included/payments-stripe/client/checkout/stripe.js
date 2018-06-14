@@ -80,8 +80,8 @@ Template.stripePaymentForm.helpers({
 // We trigger a Router.go to the cart/completed page.
 Template.stripePaymentForm.onCreated(function () {
   // we need to cache the current "checkoutCart" because a new cart is created during copyCartToOrder
-  const checkoutCart = Cart.findOne({ userId: Meteor.userId() });
-  const orderSub = Meteor.subscribe("CompletedCartOrder", Meteor.userId(), checkoutCart._id);
+  const checkoutCart = Cart.findOne({ userId: Reaction.userId() });
+  const orderSub = Meteor.subscribe("CompletedCartOrder", Reaction.userId(), checkoutCart._id);
   // Watch the orders subscription, once the order is created redirect to cart/completed
   this.autorun(() => {
     if (orderSub.ready()) {
@@ -101,7 +101,7 @@ AutoForm.addHooks("stripe-payment-form", {
     submitting = true;
     hidePaymentAlert();
     const { template } = this;
-    const cart = Cart.findOne({ userId: Meteor.userId() });
+    const cart = Cart.findOne({ userId: Reaction.userId() });
 
     // validate card data
     // also validated on server

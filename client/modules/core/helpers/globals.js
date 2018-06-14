@@ -66,10 +66,10 @@ export function getCardType(cardNumber) {
  * @return {Boolean} true if authenticated user
  */
 export function getGuestLoginState() {
-  if (Meteor.userId() === "string" && this.getShopId() && this.allowGuestCheckout()) {
+  if (Reaction.userId() === "string" && this.getShopId() && this.allowGuestCheckout()) {
     const isGuestFlow = Session.equals("guestCheckoutFlow", true);
-    const isGuest = Roles.userIsInRole(Meteor.userId(), "guest", this.getShopId());
-    const isAnonymous = Roles.userIsInRole(Meteor.userId(), "anonymous", this.getShopId());
+    const isGuest = Roles.userIsInRole(Reaction.userId(), "guest", this.getShopId());
+    const isAnonymous = Roles.userIsInRole(Reaction.userId(), "anonymous", this.getShopId());
     if (!isGuestFlow && !isGuest && isAnonymous) {
       return false;
     } else if (!isGuestFlow && isGuest && !isAnonymous) {

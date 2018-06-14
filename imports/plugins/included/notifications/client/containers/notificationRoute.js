@@ -14,7 +14,7 @@ const handlers = {
 };
 
 function composer(props, onData) {
-  if (Meteor.subscribe("Notification", Meteor.userId()).ready()) {
+  if (Meteor.subscribe("Notification", Reaction.userId()).ready()) {
     const notificationList = Notifications.find({}, { sort: { timeSent: -1 } }).fetch();
     const unread = Notifications.find({ status: "unread" }).count();
 

@@ -43,7 +43,7 @@ function handleOpenShortcut(event, app) {
 }
 
 function composer(props, onData) {
-  const audience = Roles.getRolesForUser(Meteor.userId(), Reaction.getShopId());
+  const audience = Roles.getRolesForUser(Reaction.userId(), Reaction.getShopId());
   const settings = Reaction.Apps({ provides: "settings", enabled: true, audience }) || [];
 
   const dashboard = Reaction.Apps({ provides: "dashboard", enabled: true, audience })

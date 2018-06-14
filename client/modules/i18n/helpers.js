@@ -41,7 +41,7 @@ Template.registerHelper("i18n", (i18nKey, i18nMessage) => {
 Template.registerHelper("currencySymbol", () => {
   const locale = Reaction.Locale.get();
   const user = Accounts.findOne({
-    _id: Meteor.userId()
+    _id: Reaction.userId()
   });
   const profileCurrency = user.profile && user.profile.currency;
   if (profileCurrency) {

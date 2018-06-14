@@ -56,7 +56,7 @@ class AddEmail extends Component {
       } else {
         // we need to re-grab order here so it has the email
         const order = Orders.findOne({
-          userId: Meteor.userId(),
+          userId: Reaction.userId(),
           cartId
         });
         Meteor.call("orders/sendNotification", order, (error) => {

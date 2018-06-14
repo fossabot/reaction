@@ -33,7 +33,7 @@ class LoginInlineContainer extends Component {
         return;
       }
       const cart = Cart.findOne({
-        userId: Meteor.userId()
+        userId: Reaction.userId()
       });
       // If there's already a billing and shipping address selected, push beyond address book
       if (cart && cart.billing[0] && cart.billing[0].address
@@ -64,7 +64,7 @@ class LoginInlineContainer extends Component {
    */
   handleEmailSubmit = (event, email) => {
     event.preventDefault();
-    const userId = Meteor.userId();
+    const userId = Reaction.userId();
     Meteor.call("cart/setAnonymousUserEmail", userId, email, (error) => {
       if (error) {
         Alerts.toast(i18next.t("mail.alerts.addCartEmailFailed"), "error");

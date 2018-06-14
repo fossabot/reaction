@@ -167,11 +167,11 @@ const handlers = {
 };
 
 function composer(props, onData) {
-  const handle = Meteor.subscribe("Accounts", Meteor.userId());
+  const handle = Meteor.subscribe("Accounts", Reaction.userId());
   if (!handle.ready()) {
     return;
   }
-  const account = Collections.Accounts.findOne({ _id: Meteor.userId() });
+  const account = Collections.Accounts.findOne({ _id: Reaction.userId() });
   const { addressBook } = account.profile;
   const countries = Countries.find().fetch();
   const shop = Collections.Shops.findOne();

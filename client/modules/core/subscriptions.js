@@ -12,7 +12,7 @@ export const Subscriptions = {};
 // See: https://github.com/kadirahq/subs-manager
 Subscriptions.Manager = new SubsManager();
 
-Subscriptions.Account = Subscriptions.Manager.subscribe("Accounts", Meteor.userId());
+Subscriptions.Account = Subscriptions.Manager.subscribe("Accounts", Reaction.userId());
 
 /*
  * Reaction.session
@@ -82,8 +82,8 @@ Tracker.autorun(() => {
   Tracker.nonreactive(() => {
     sessionId = Session.get("sessionId");
   });
-  Subscriptions.Cart = Subscriptions.Manager.subscribe("Cart", sessionId, Meteor.userId());
-  Subscriptions.UserProfile = Meteor.subscribe("UserProfile", Meteor.userId());
+  Subscriptions.Cart = Subscriptions.Manager.subscribe("Cart", sessionId, Reaction.userId());
+  Subscriptions.UserProfile = Meteor.subscribe("UserProfile", Reaction.userId());
 });
 
 Tracker.autorun(() => {

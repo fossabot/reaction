@@ -57,7 +57,7 @@ function composer(props, onData) {
     const registryItems = Reaction.Apps({ provides: "settings", container: "dashboard" });
 
     for (const item of registryItems) {
-      if (Reaction.hasPermission(item.route, Meteor.userId())) {
+      if (Reaction.hasPermission(item.route, Reaction.userId())) {
         let { icon } = item;
         if (!item.icon && item.provides && item.provides.includes("settings")) {
           icon = "gear";
@@ -82,7 +82,7 @@ function composer(props, onData) {
     isPreview: Reaction.isPreview(),
     isActionViewAtRootView: Reaction.isActionViewAtRootView(),
     actionViewIsOpen: Reaction.isActionViewOpen(),
-    hasCreateProductAccess: Reaction.hasPermission("createProduct", Meteor.userId(), Reaction.getShopId()),
+    hasCreateProductAccess: Reaction.hasPermission("createProduct", Reaction.userId(), Reaction.getShopId()),
     shopId: Reaction.getShopId(),
     shops,
 

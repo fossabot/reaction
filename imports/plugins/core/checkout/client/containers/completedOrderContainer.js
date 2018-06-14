@@ -12,13 +12,13 @@ function composer(props, onData) {
   // (possibly because the oplog is tied to the original id?)
   // I think this is a bug in SubscriptionManager but that should be revisited later
   const sessionId = Session.get("sessionId");
-  Reaction.Subscriptions.Cart = Reaction.Subscriptions.Manager.subscribe("Cart", sessionId, Meteor.userId());
+  Reaction.Subscriptions.Cart = Reaction.Subscriptions.Manager.subscribe("Cart", sessionId, Reaction.userId());
   const cartId = Reaction.Router.getQueryParam("_id");
-  const orderSub = Meteor.subscribe("CompletedCartOrder", Meteor.userId(), cartId);
+  const orderSub = Meteor.subscribe("CompletedCartOrder", Reaction.userId(), cartId);
 
   if (orderSub.ready()) {
     const order = Orders.findOne({
-      userId: Meteor.userId(),
+      userId: Reaction.userId(),
       cartId
     });
 

@@ -13,7 +13,7 @@ import * as Collections from "/lib/collections";
 Template.registerHelper("displayName", (displayUser) => {
   i18nextDep.depend();
 
-  const user = displayUser || Collections.Accounts.findOne(Meteor.userId());
+  const user = displayUser || Collections.Accounts.findOne(Reaction.userId());
   if (user) {
     if (user.name) {
       return user.name;

@@ -5,7 +5,7 @@ import { Notifications } from "/lib/collections";
 import { Notification } from "../components";
 
 function composer(props, onData) {
-  if (Meteor.subscribe("Notification", Meteor.userId()).ready()) {
+  if (Meteor.subscribe("Notification", Reaction.userId()).ready()) {
     const notificationList = Notifications.find({}, { sort: { timeSent: -1 }, limit: 5 }).fetch();
     const unread = Notifications.find({ status: "unread" }).count();
 

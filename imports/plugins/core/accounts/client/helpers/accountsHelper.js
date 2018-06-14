@@ -62,7 +62,7 @@ export function getInvitableGroups(groups) {
  */
 export function getDefaultUserInviteGroup(groups) {
   let result;
-  const user = Collections.Accounts.findOne({ userId: Meteor.userId() });
+  const user = Collections.Accounts.findOne({ userId: Reaction.userId() });
   result = groups.find((grp) => user && user.groups.indexOf(grp._id) > -1);
 
   if (result && result.slug === "owner") {

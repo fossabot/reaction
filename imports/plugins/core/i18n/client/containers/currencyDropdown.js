@@ -13,7 +13,7 @@ const handlers = {
     // update Accounts with the selected currency
     Meteor.call("accounts/setProfileCurrency", currencyName);
 
-    const cart = Cart.findOne({ userId: Meteor.userId() });
+    const cart = Cart.findOne({ userId: Reaction.userId() });
 
     // Attach changed currency to this users cart
     Meteor.call("cart/setUserCurrency", cart._id, currencyName);
@@ -42,7 +42,7 @@ const composer = (props, onData) => {
     });
 
     const user = Accounts.findOne({
-      _id: Meteor.userId()
+      _id: Reaction.userId()
     });
     const profileCurrency = user && user.profile && user.profile.currency;
 

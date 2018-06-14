@@ -38,7 +38,7 @@ Template.shopSettings.helpers({
       selectedMediaId = shop.brandAssets[0].mediaId;
     }
 
-    const userId = Meteor.userId();
+    const userId = Reaction.userId();
     const metadata = { type: "brandAsset", ownerId: userId, shopId };
 
     const brandMediaList = Media.findLocal({
