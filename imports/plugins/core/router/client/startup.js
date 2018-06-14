@@ -2,16 +2,16 @@ import { loadRegisteredComponents } from "@reactioncommerce/reaction-components"
 import { Meteor } from "meteor/meteor";
 import { Tracker } from "meteor/tracker";
 import { Accounts } from "meteor/accounts-base";
-import { Reaction } from "/client/api";
+import { Reaction, Logger } from "/client/api";
 import { Shops } from "/lib/collections";
 import { Router } from "../lib";
 import { initBrowserRouter } from "./browserRouter";
 
 Meteor.startup(() => {
   window.keycloak = new window.Keycloak({
-    realm: "default",
-    clientId: "reaction-meteor-frontend",
-    url: "http://localhost:8080/auth"
+    realm: Meteor.settings.public.keycloakRealm,
+    clientId: Meteor.settings.public.keycloakClientID,
+    url: Meteor.settings.public.keycloakServerUrl
   });
 
   const { keycloak } = window;
@@ -21,16 +21,11 @@ Meteor.startup(() => {
     .success((authenticated) => {
       if (authenticated) {
         localStorage.setItem("reaction_kc_token", keycloak.token);
-        keycloak
-          .loadUserProfile()
-          .success((profile) => {
-            Meteor.call("keycloak/auth", profile, (error, userId) => {
-              console.log({ error, userId });
-            });
-          });
       }
     })
-    .error(() => {});
+    .error((error) => {
+      Logger.error(`Failed to initialize keycloak adapter: ${error}`);
+    });
 
   loadRegisteredComponents();
 
